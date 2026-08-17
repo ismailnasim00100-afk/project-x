@@ -1,543 +1,363 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>لكِ فقط ❤️</title>
+    <title>إلى مريم ❤️</title>
 
-  <meta
-    name="description"
-    content="مكان صغير صنع من القلب لشخص مميز."
-  >
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  <link rel="stylesheet" href="style.css">
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #050003;
+            color: white;
+        }
+
+        /* الخلفية */
+        .scene {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            height: 100svh;
+            overflow: hidden;
+
+            background-image:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.15),
+                    rgba(0, 0, 0, 0.15)
+                ),
+                url("background.png");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* طبقة الإضاءة */
+        .glow {
+            position: absolute;
+            inset: -20%;
+            background:
+                radial-gradient(
+                    circle at 50% 45%,
+                    rgba(150, 0, 35, 0.16),
+                    transparent 35%
+                );
+
+            animation: glowMove 7s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes glowMove {
+            from {
+                transform: scale(1);
+                opacity: 0.65;
+            }
+
+            to {
+                transform: scale(1.12);
+                opacity: 1;
+            }
+        }
+
+        /* النجوم والجزيئات */
+        .particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: rgba(255, 180, 190, 0.9);
+            box-shadow:
+                0 0 8px rgba(255, 60, 90, 0.8),
+                0 0 16px rgba(255, 40, 70, 0.35);
+
+            animation:
+                floatUp linear infinite,
+                twinkle ease-in-out infinite alternate;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(30px);
+            }
+
+            to {
+                transform: translateY(-120px);
+            }
+        }
+
+        @keyframes twinkle {
+            from {
+                opacity: 0.15;
+                transform: scale(0.7);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1.4);
+            }
+        }
+
+        /* المحتوى */
+        .content {
+            position: relative;
+            z-index: 5;
+
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px;
+            text-align: center;
+        }
+
+        .small-text {
+            font-size: 15px;
+            color: rgba(255, 220, 225, 0.75);
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+
+            animation: fadeDown 1.5s ease forwards;
+        }
+
+        .title {
+            font-size: clamp(42px, 12vw, 80px);
+            font-weight: 700;
+
+            background: linear-gradient(
+                180deg,
+                #ffffff,
+                #ffd6dc,
+                #c92c4b
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+
+            text-shadow:
+                0 0 25px rgba(255, 30, 70, 0.2);
+
+            animation: titleAppear 1.8s ease forwards;
+        }
+
+        .subtitle {
+            margin-top: 15px;
+            max-width: 330px;
+
+            font-size: 17px;
+            line-height: 1.9;
+
+            color: rgba(255, 235, 238, 0.82);
+
+            animation: fadeUp 2s ease forwards;
+        }
+
+        /* الزر */
+        .start-btn {
+            margin-top: 35px;
+
+            border: 1px solid rgba(255, 120, 140, 0.45);
+            border-radius: 999px;
+
+            padding: 15px 34px;
+
+            color: white;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(130, 0, 30, 0.75),
+                    rgba(70, 0, 18, 0.85)
+                );
+
+            backdrop-filter: blur(10px);
+
+            font-size: 17px;
+            cursor: pointer;
+
+            box-shadow:
+                0 0 25px rgba(170, 0, 40, 0.25);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                background 0.3s ease;
+
+            animation: fadeUp 2.3s ease forwards;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-4px) scale(1.03);
+
+            box-shadow:
+                0 0 35px rgba(220, 20, 60, 0.45);
+        }
+
+        .start-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* الحركات */
+        @keyframes titleAppear {
+            from {
+                opacity: 0;
+                transform: translateY(25px) scale(0.95);
+                filter: blur(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* للجوال */
+        @media (max-width: 500px) {
+            .content {
+                padding: 22px;
+            }
+
+            .title {
+                font-size: 52px;
+            }
+
+            .subtitle {
+                font-size: 15px;
+            }
+
+            .start-btn {
+                font-size: 16px;
+                padding: 14px 30px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-  <!-- =========================
-       شاشة البداية
-  ========================== -->
+    <main class="scene">
 
-  <div id="intro" class="intro-screen">
+        <div class="glow"></div>
 
-    <div class="intro-content">
+        <div class="particles" id="particles"></div>
 
-      <div class="intro-heart">
-        ♡
-      </div>
+        <section class="content">
 
-      <p class="intro-small">
-        هناك شيء صغير صنعته لكِ...
-      </p>
+            <div class="small-text">
+                إلى شخص مميز جدًا...
+            </div>
 
-      <h1>
-        مريم
-      </h1>
+            <h1 class="title">
+                مريم
+            </h1>
 
-      <p class="intro-text">
-        هذا المكان لكِ فقط ❤️
-      </p>
+            <p class="subtitle">
+                هذه المرة ما هي مجرد رسالة...
+                <br>
+                هذه رحلة صغيرة صنعتها لكِ ❤️
+            </p>
 
-      <button id="enterBtn" class="main-btn">
-        ادخلي ❤️
-      </button>
+            <button class="start-btn" onclick="startJourney()">
+                ابدئي الرحلة ❤️
+            </button>
 
-    </div>
+        </section>
 
-  </div>
+    </main>
 
+    <script>
+        const particlesContainer =
+            document.getElementById("particles");
 
-  <!-- =========================
-       الموقع الرئيسي
-  ========================== -->
+        // إنشاء الجزيئات والنجوم
+        for (let i = 0; i < 45; i++) {
 
-  <main id="website" class="website">
+            const particle =
+                document.createElement("span");
 
+            particle.className = "particle";
 
-    <!-- =========================
-         Navigation
-    ========================== -->
+            particle.style.left =
+                Math.random() * 100 + "%";
 
-    <header class="navbar">
+            particle.style.top =
+                Math.random() * 100 + "%";
 
-      <div class="logo">
-        Mariam <span>♡</span>
-      </div>
+            const size =
+                Math.random() * 3 + 1;
 
-      <nav>
+            particle.style.width =
+                size + "px";
 
-        <a href="#home">
-          البداية
-        </a>
+            particle.style.height =
+                size + "px";
 
-        <a href="#why">
-          لماذا مريم؟
-        </a>
+            particle.style.animationDuration =
+                (Math.random() * 5 + 4) + "s";
 
-        <a href="#message">
-          رسالة لكِ
-        </a>
+            particle.style.animationDelay =
+                (Math.random() * 5) + "s";
 
-        <a href="#memories">
-          ذكرياتنا
-        </a>
+            particlesContainer.appendChild(particle);
+        }
 
-        <a href="#song">
-          أغنيتنا
-        </a>
+        function startJourney() {
 
-        <a href="#final">
-          لكِ فقط
-        </a>
+            // مؤقتًا نعرض رسالة.
+            // لاحقًا سنربط الزر بالصفحة الثانية.
 
-      </nav>
-
-    </header>
-
-
-    <!-- =========================
-         Hero
-    ========================== -->
-
-    <section id="home" class="hero section">
-
-      <div class="hero-overlay"></div>
-
-      <div class="hero-content">
-
-        <div class="floating-heart">
-          ♡
-        </div>
-
-        <p class="hero-small">
-          إلى الشخص الذي يستحق كل شيء جميل
-        </p>
-
-        <h1>
-          مريم
-        </h1>
-
-        <p class="hero-description">
-          أنتِ النبض، أنتِ الحكاية،
-          أنتِ كل شيء جميل ❤️
-        </p>
-
-        <a
-          href="#why"
-          class="main-btn"
-        >
-          ابدئي الحكاية
-        </a>
-
-      </div>
-
-      <div class="scroll-down">
-        ↓
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         لماذا مريم؟
-    ========================== -->
-
-    <section id="why" class="why section">
-
-      <div class="section-image envelope">
-
-        <div class="letter-envelope">
-
-          <span>
-            ♡
-          </span>
-
-          <strong>
-            مريم
-          </strong>
-
-        </div>
-
-      </div>
-
-
-      <div class="section-content">
-
-        <span class="section-number">
-          01
-        </span>
-
-        <h2>
-          لماذا مريم؟
-        </h2>
-
-        <div class="line"></div>
-
-        <p>
-          لأنكِ مختلفة عن الجميع...
-        </p>
-
-        <p>
-          لأن فيكِ تفاصيل لا تُنسى،
-          وابتسامة تستطيع أن تجعل
-          اليوم أجمل.
-        </p>
-
-        <p>
-          ولأنكِ ببساطة الشخص الذي
-          اخترته من بين الجميع.
-        </p>
-
-        <a
-          href="#message"
-          class="outline-btn"
-        >
-          التالي ❤️
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         رسالة لكِ
-    ========================== -->
-
-    <section id="message" class="message section">
-
-      <div class="message-card">
-
-        <div class="paper">
-
-          <span class="paper-title">
-            رسالة لكِ
-          </span>
-
-          <div class="paper-line"></div>
-
-          <p>
-            مريم...
-          </p>
-
-          <p>
-            وجودك في حياتي
-            من أجمل الأشياء التي
-            حصلت لي.
-          </p>
-
-          <p>
-            شكرًا لكل لحظة،
-            ولكل ابتسامة،
-            ولكل شيء جميل
-            جمعنا.
-          </p>
-
-          <p class="signature">
-            من قلبي ❤️
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="section-content light-content">
-
-        <span class="section-number">
-          02
-        </span>
-
-        <h2>
-          رسالة لكِ
-        </h2>
-
-        <div class="line"></div>
-
-        <p>
-          بعض الكلام لا يكفيه
-          مجرد رسالة...
-        </p>
-
-        <p>
-          لذلك قررت أن أصنع لكِ
-          مكانًا يحمل اسمك.
-        </p>
-
-        <a
-          href="#memories"
-          class="main-btn"
-        >
-          التالي ❤️
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         ذكرياتنا
-    ========================== -->
-
-    <section id="memories" class="memories section">
-
-      <div class="section-heading">
-
-        <span>
-          03
-        </span>
-
-        <h2>
-          ذكرياتنا
-        </h2>
-
-        <div class="line center"></div>
-
-        <p>
-          بعض اللحظات تستحق أن تبقى.
-        </p>
-
-      </div>
-
-
-      <div class="memory-grid">
-
-
-        <div class="memory-card">
-
-          <div class="memory-placeholder">
-            ❤️
-          </div>
-
-          <p>
-            أجمل لحظة
-          </p>
-
-        </div>
-
-
-        <div class="memory-card">
-
-          <div class="memory-placeholder">
-            🌹
-          </div>
-
-          <p>
-            لحظة لا تُنسى
-          </p>
-
-        </div>
-
-
-        <div class="memory-card">
-
-          <div class="memory-placeholder">
-            ✨
-          </div>
-
-          <p>
-            أجمل تفاصيلنا
-          </p>
-
-        </div>
-
-
-        <div class="memory-card">
-
-          <div class="memory-placeholder">
-            💕
-          </div>
-
-          <p>
-            يوم جميل
-          </p>
-
-        </div>
-
-
-      </div>
-
-
-      <a
-        href="#song"
-        class="main-btn"
-      >
-        التالي ❤️
-      </a>
-
-    </section>
-
-
-    <!-- =========================
-         الأغنية
-    ========================== -->
-
-    <section id="song" class="song section">
-
-
-      <div class="record-area">
-
-        <div class="vinyl">
-
-          <div class="vinyl-center">
-            ♡
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="song-content">
-
-        <span class="section-number">
-          04
-        </span>
-
-        <h2>
-          أغنيتنا
-        </h2>
-
-        <div class="line"></div>
-
-        <p>
-          الأغنية اللي اخترتها لكِ ❤️
-        </p>
-
-
-        <!-- مشغل الأغنية -->
-
-        <div class="music-player">
-
-          <a
-            href="https://www.youtube.com/watch?v=aTiSaoTN8e0"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="play-btn"
-            aria-label="تشغيل آخر وعد"
-          >
-            ▶
-          </a>
-
-
-          <div class="music-info">
-
-            <strong>
-              آخر وعد
-            </strong>
-
-            <span>
-              نبيل الأديب ❤️
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <p class="music-note">
-          اضغطي على زر التشغيل واستمعي لأغنيتنا 🎵
-        </p>
-
-
-        <a
-          href="https://www.youtube.com/watch?v=aTiSaoTN8e0"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="main-btn"
-        >
-          🎵 تشغيل آخر وعد
-        </a>
-
-
-        <a
-          href="#final"
-          class="outline-btn"
-        >
-          التالي ❤️
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         النهاية
-    ========================== -->
-
-    <section id="final" class="final section">
-
-      <div class="final-content">
-
-        <span class="section-number">
-          05
-        </span>
-
-        <h2>
-          لكِ فقط
-        </h2>
-
-        <div class="line center"></div>
-
-        <p>
-          ربما هذا الموقع لن يبقى إلى الأبد...
-        </p>
-
-        <p>
-          وربما سأحذفه بعد أن تريه.
-        </p>
-
-        <p>
-          لكن الشيء الذي جعلني أصنعه لكِ
-          لن أحذفه من قلبي.
-        </p>
-
-
-        <div class="big-heart">
-          ♥
-        </div>
-
-
-        <h1>
-          أحبك يا مريم
-        </h1>
-
-
-        <p class="final-small">
-          صنع من القلب ❤️
-        </p>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         Footer
-    ========================== -->
-
-    <footer>
-
-      <p>
-        صنع من القلب لـ مريم
-        <span>♥</span>
-      </p>
-
-    </footer>
-
-
-  </main>
-
-
-  <!-- JavaScript -->
-
-  <script src="script.js"></script>
+            alert("الرحلة بدأت ❤️");
+        }
+    </script>
 
 </body>
-
 </html>
