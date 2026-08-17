@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>إلى مريم ❤️</title>
 
 <style>
@@ -20,54 +19,47 @@ html{
 body{
     min-height:100vh;
     background:#070107;
-    color:#fff;
+    color:white;
     font-family:Tahoma,Arial,sans-serif;
     overflow-x:hidden;
 }
 
-/* =========================
-   الخلفية
-========================= */
-
+/* الخلفية */
 .background{
     position:fixed;
     inset:0;
-    z-index:-10;
-
+    z-index:0;
     background:
         linear-gradient(
             rgba(5,0,5,.20),
-            rgba(5,0,5,.60)
+            rgba(5,0,5,.65)
         ),
-        url("background.png");
-
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
+        url("background.png") center/cover no-repeat;
 }
 
-.background::after{
+.background:after{
     content:"";
     position:absolute;
     inset:0;
-
-    background:
-        radial-gradient(
-            circle at center,
-            transparent 15%,
-            rgba(0,0,0,.48) 100%
-        );
+    background:radial-gradient(
+        circle at center,
+        transparent 10%,
+        rgba(0,0,0,.55) 100%
+    );
 }
 
-/* =========================
-   الجزيئات
-========================= */
+/* المحتوى فوق الخلفية */
+#app{
+    position:relative;
+    z-index:2;
+}
 
+/* الجزيئات */
 #particles{
     position:fixed;
     inset:0;
+    z-index:1;
     pointer-events:none;
-    z-index:-2;
     overflow:hidden;
 }
 
@@ -78,58 +70,42 @@ body{
     border-radius:50%;
     background:#ffd8df;
     box-shadow:0 0 12px #ff607c;
-
     animation:floatUp linear infinite;
 }
 
 @keyframes floatUp{
     from{
-        transform:translateY(30px);
+        transform:translateY(20px);
         opacity:0;
     }
-
-    15%{
-        opacity:1;
-    }
-
-    85%{
-        opacity:1;
-    }
-
+    15%{opacity:1}
+    85%{opacity:1}
     to{
         transform:translateY(-110vh);
         opacity:0;
     }
 }
 
-/* =========================
-   الصفحات
-========================= */
-
+/* الصفحات */
 .page{
     min-height:100vh;
     min-height:100svh;
-
     display:none;
-
     align-items:center;
     justify-content:center;
-
     padding:35px 18px 100px;
-
-    animation:pageIn .7s ease;
 }
 
 .page.active{
     display:flex;
+    animation:pageIn .6s ease;
 }
 
 @keyframes pageIn{
     from{
         opacity:0;
-        transform:translateY(25px);
+        transform:translateY(20px);
     }
-
     to{
         opacity:1;
         transform:translateY(0);
@@ -142,112 +118,71 @@ body{
     text-align:center;
 }
 
-/* =========================
-   الصفحة الأولى
-========================= */
-
+/* الصفحة الأولى */
 .small-title{
     color:#ffd3dc;
     font-size:14px;
     letter-spacing:3px;
-    margin-bottom:20px;
+    margin-bottom:18px;
 }
 
 .main-title{
     font-size:clamp(65px,18vw,110px);
-
-    background:
-        linear-gradient(
-            180deg,
-            #fff,
-            #ffd0d8 48%,
-            #bd1d40
-        );
-
+    background:linear-gradient(
+        180deg,
+        #fff,
+        #ffd0d8 48%,
+        #bd1d40
+    );
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
-
-    filter:drop-shadow(0 0 25px rgba(255,30,70,.25));
-
-    animation:titleAppear 1.3s ease;
-}
-
-@keyframes titleAppear{
-    from{
-        opacity:0;
-        transform:scale(.75);
-        filter:blur(12px);
-    }
-
-    to{
-        opacity:1;
-        transform:scale(1);
-        filter:blur(0);
-    }
+    filter:drop-shadow(0 0 25px rgba(255,30,70,.3));
 }
 
 .subtitle{
     margin-top:20px;
-    color:rgba(255,235,240,.85);
+    color:rgba(255,235,240,.88);
     line-height:2.1;
     font-size:16px;
 }
 
-/* =========================
-   البطاقة
-========================= */
-
+/* البطاقة */
 .card{
     width:100%;
-
     padding:28px 22px;
-
     border-radius:28px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(55,0,22,.72),
-            rgba(8,0,7,.72)
-        );
-
-    border:1px solid rgba(255,160,175,.22);
-
+    background:linear-gradient(
+        145deg,
+        rgba(55,0,22,.80),
+        rgba(8,0,7,.82)
+    );
+    border:1px solid rgba(255,160,175,.25);
     backdrop-filter:blur(15px);
-
-    box-shadow:
-        0 25px 80px rgba(0,0,0,.4),
-        inset 0 0 40px rgba(255,30,70,.025);
+    box-shadow:0 25px 80px rgba(0,0,0,.45);
 }
 
 .title{
-    font-size:38px;
+    font-size:36px;
     margin-bottom:15px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #fff,
-            #ffbdc9,
-            #bb1d3d
-        );
-
+    background:linear-gradient(
+        180deg,
+        #fff,
+        #ffbdc9,
+        #bb1d3d
+    );
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
 }
 
 .description{
-    color:rgba(255,230,235,.78);
+    color:rgba(255,230,235,.8);
     line-height:2;
     font-size:15px;
 }
 
-/* =========================
-   الأزرار
-========================= */
-
+/* الأزرار */
 .buttons{
     display:flex;
     justify-content:center;
@@ -257,50 +192,26 @@ body{
 }
 
 .btn{
-    border:none;
+    border:1px solid rgba(255,150,170,.35);
     outline:none;
-
     padding:14px 25px;
-
     border-radius:999px;
-
     color:white;
-
     font-size:15px;
     font-family:inherit;
-
     cursor:pointer;
-
-    background:
-        linear-gradient(
-            135deg,
-            #8e0d2e,
-            #4b0017
-        );
-
-    border:1px solid rgba(255,150,170,.32);
-
-    box-shadow:
-        0 8px 25px rgba(120,0,35,.25);
-
-    transition:
-        transform .25s,
-        box-shadow .25s,
-        background .25s;
+    background:linear-gradient(
+        135deg,
+        #8e0d2e,
+        #4b0017
+    );
+    box-shadow:0 8px 25px rgba(120,0,35,.25);
+    transition:.25s;
 }
 
 .btn:hover{
     transform:translateY(-3px);
-
-    box-shadow:
-        0 12px 35px rgba(190,10,55,.4);
-
-    background:
-        linear-gradient(
-            135deg,
-            #ad123a,
-            #61001d
-        );
+    box-shadow:0 12px 35px rgba(190,10,55,.4);
 }
 
 .btn:active{
@@ -308,14 +219,10 @@ body{
 }
 
 .btn.secondary{
-    background:
-        rgba(30,0,15,.65);
+    background:rgba(30,0,15,.75);
 }
 
-/* =========================
-   الذكريات
-========================= */
-
+/* الذكريات */
 .memory-list{
     display:grid;
     gap:13px;
@@ -324,35 +231,26 @@ body{
 
 .memory{
     text-align:right;
-
     padding:19px;
-
     border-radius:20px;
-
     background:rgba(20,0,11,.55);
-
     border:1px solid rgba(255,140,160,.16);
-
     cursor:pointer;
-
     transition:.3s;
 }
 
 .memory:hover{
     transform:translateY(-3px);
-    border-color:rgba(255,140,160,.4);
 }
 
 .memory-title{
-    font-size:17px;
     color:#ffe1e6;
+    font-size:17px;
 }
 
 .memory-text{
     display:none;
-
     margin-top:10px;
-
     color:#ffc3cd;
     line-height:1.9;
     font-size:14px;
@@ -362,10 +260,7 @@ body{
     display:block;
 }
 
-/* =========================
-   الأغاني
-========================= */
-
+/* الأغاني */
 .song-list{
     display:grid;
     gap:14px;
@@ -376,37 +271,22 @@ body{
     display:flex;
     align-items:center;
     gap:13px;
-
     padding:15px;
-
     border-radius:20px;
-
     background:rgba(20,0,11,.55);
-
     border:1px solid rgba(255,140,160,.16);
-
     text-align:right;
 }
 
 .song-icon{
     width:50px;
     height:50px;
-
     flex-shrink:0;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            #b81d43,
-            #390012
-        );
-
+    background:radial-gradient(circle,#b81d43,#390012);
     font-size:22px;
 }
 
@@ -426,55 +306,33 @@ body{
 
 .youtube{
     text-decoration:none;
-
     color:white;
-
     background:#8d0b2d;
-
     border-radius:999px;
-
     padding:9px 13px;
-
     font-size:12px;
-
     white-space:nowrap;
 }
 
-.youtube:hover{
-    background:#b5123c;
-}
-
-/* =========================
-   الرسائل
-========================= */
-
+/* الرسائل */
 .letter-list{
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
     gap:12px;
-
     margin-top:25px;
 }
 
 .letter{
     padding:25px 12px;
-
     border-radius:20px;
-
     background:rgba(20,0,11,.55);
-
     border:1px solid rgba(255,140,160,.16);
-
     cursor:pointer;
-
     transition:.3s;
 }
 
 .letter:hover{
     transform:translateY(-4px);
-    border-color:rgba(255,140,160,.4);
 }
 
 .letter-icon{
@@ -487,233 +345,117 @@ body{
     font-size:13px;
 }
 
-/* =========================
-   الغرفة السرية
-========================= */
-
+/* الغرفة السرية */
 .secret-input{
     width:100%;
-
     margin-top:25px;
-
     padding:16px;
-
     border-radius:16px;
-
     border:1px solid rgba(255,150,170,.25);
-
     background:rgba(0,0,0,.45);
-
     outline:none;
-
     color:white;
-
     text-align:center;
-
     font-size:22px;
-
     letter-spacing:8px;
-
     font-family:inherit;
-}
-
-.secret-input:focus{
-    border-color:#ff718b;
-
-    box-shadow:
-        0 0 25px rgba(255,30,70,.2);
 }
 
 .secret-message{
     min-height:30px;
-
     margin-top:18px;
-
     color:#ffc0cb;
-
     line-height:1.8;
 }
 
 .secret-content{
     display:none;
-
     margin-top:25px;
-
-    animation:secretIn 1.3s ease;
 }
 
 .secret-content.show{
     display:block;
+    animation:secretIn 1s ease;
 }
 
 @keyframes secretIn{
     from{
         opacity:0;
-        transform:scale(.88);
-        filter:blur(8px);
+        transform:scale(.85);
     }
-
     to{
         opacity:1;
         transform:scale(1);
-        filter:blur(0);
-    }
-}
-
-.secret-image-wrap{
-    position:relative;
-}
-
-.secret-glow{
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    width:280px;
-    height:280px;
-
-    transform:translate(-50%,-50%);
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,20,65,.35),
-            transparent 70%
-        );
-
-    filter:blur(25px);
-
-    animation:pulseGlow 3s ease-in-out infinite;
-}
-
-@keyframes pulseGlow{
-    0%,100%{
-        transform:translate(-50%,-50%) scale(.85);
-        opacity:.5;
-    }
-
-    50%{
-        transform:translate(-50%,-50%) scale(1.15);
-        opacity:1;
     }
 }
 
 .secret-image{
-    position:relative;
-    z-index:2;
-
     display:block;
-
     width:100%;
     max-width:440px;
-
     max-height:65vh;
-
     margin:auto;
-
     object-fit:contain;
-
     border-radius:23px;
-
     border:1px solid rgba(255,180,195,.3);
-
-    box-shadow:
-        0 0 35px rgba(190,20,60,.35);
+    box-shadow:0 0 35px rgba(190,20,60,.4);
 }
 
 .secret-title{
     margin-top:20px;
-
     color:#ffd5dc;
-
     font-size:24px;
 }
 
 .secret-text{
     margin-top:10px;
-
     color:rgba(255,230,235,.78);
-
     line-height:2;
 }
 
-/* =========================
-   النهاية
-========================= */
-
+/* النهاية */
 .heart{
     font-size:80px;
-
     animation:heart 1.4s infinite;
 }
 
 @keyframes heart{
-    0%,100%{
-        transform:scale(1);
-    }
-
-    50%{
-        transform:scale(1.15);
-    }
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.15)}
 }
 
 .final-text{
     margin-top:20px;
-
     color:#ffe1e6;
-
     line-height:2.2;
-
     font-size:17px;
 }
 
-/* =========================
-   شريط التنقل
-========================= */
-
+/* التنقل */
 .nav{
     position:fixed;
-
     bottom:15px;
     left:50%;
-
     transform:translateX(-50%);
-
     z-index:100;
-
     display:flex;
     gap:5px;
-
     padding:7px;
-
     border-radius:999px;
-
-    background:rgba(15,0,9,.78);
-
-    border:1px solid rgba(255,140,160,.2);
-
+    background:rgba(15,0,9,.85);
+    border:1px solid rgba(255,140,160,.25);
     backdrop-filter:blur(15px);
 }
 
 .nav button{
     width:40px;
     height:40px;
-
     border:0;
-
     border-radius:50%;
-
     background:transparent;
-
     color:white;
-
     cursor:pointer;
-
     font-size:16px;
-
     transition:.25s;
 }
 
@@ -722,60 +464,34 @@ body{
     background:#850a2b;
 }
 
-/* =========================
-   التنبيه
-========================= */
-
+/* التنبيه */
 .toast{
     position:fixed;
-
     top:25px;
     left:50%;
-
     transform:translate(-50%,-30px);
-
     opacity:0;
-
     z-index:200;
-
     max-width:90%;
-
     padding:14px 20px;
-
     border-radius:18px;
-
-    background:rgba(20,0,11,.94);
-
+    background:rgba(20,0,11,.95);
     border:1px solid rgba(255,150,170,.25);
-
     color:#ffe0e5;
-
     text-align:center;
-
     line-height:1.8;
-
     transition:.35s;
-
     pointer-events:none;
 }
 
 .toast.show{
     opacity:1;
-
     transform:translate(-50%,0);
 }
 
-/* =========================
-   الجوال
-========================= */
-
 @media(max-width:500px){
-
     .page{
-        padding:
-            25px
-            15px
-            95px;
+        padding:25px 15px 95px;
     }
 
     .card{
@@ -784,10 +500,6 @@ body{
 
     .title{
         font-size:32px;
-    }
-
-    .letter-list{
-        grid-template-columns:1fr 1fr;
     }
 
     .youtube{
@@ -804,25 +516,18 @@ body{
         height:36px;
     }
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- الخلفية -->
 <div class="background"></div>
-
-<!-- الجزيئات -->
 <div id="particles"></div>
 
+<div id="app">
 
-<!-- =========================
-     الصفحة الرئيسية
-========================= -->
-
+<!-- الرئيسية -->
 <section class="page active" id="home">
-
     <div class="container">
 
         <div class="small-title">
@@ -843,38 +548,22 @@ body{
 
         <div class="buttons">
 
-            <!-- هذا الزر شغال -->
-            <button
-                class="btn"
-                onclick="showPage('story')">
-
+            <button class="btn page-btn" data-page="story">
                 أنا مستعدة ❤️
-
             </button>
 
-            <button
-                class="btn secondary"
-                onclick="showPage('songs')">
-
+            <button class="btn secondary page-btn" data-page="songs">
                 أغانينا 🎵
-
             </button>
 
         </div>
-
     </div>
-
 </section>
 
 
-<!-- =========================
-     القصة
-========================= -->
-
+<!-- القصة -->
 <section class="page" id="story">
-
     <div class="container">
-
         <div class="card">
 
             <h2 class="title">
@@ -886,15 +575,12 @@ body{
                 <br>
                 لكنها تبقى في القلب فترة طويلة.
                 <br>
-                اضغطي على الذكريات واكتشفي الرسائل.
+                اضغطي على الذكريات.
             </p>
 
             <div class="memory-list">
 
-                <div
-                    class="memory"
-                    onclick="toggleMemory(this)">
-
+                <div class="memory">
                     <div class="memory-title">
                         أول شيء أحببته فيكِ ✨
                     </div>
@@ -903,14 +589,9 @@ body{
                         ضحكتكِ وطريقتكِ في الكلام من الأشياء
                         اللي علقت في بالي من البداية. ❤️
                     </div>
-
                 </div>
 
-
-                <div
-                    class="memory"
-                    onclick="toggleMemory(this)">
-
+                <div class="memory">
                     <div class="memory-title">
                         شيء لا أنساه 🌹
                     </div>
@@ -919,14 +600,9 @@ body{
                         أحيانًا التفاصيل الصغيرة هي اللي
                         تصنع أجمل الذكريات.
                     </div>
-
                 </div>
 
-
-                <div
-                    class="memory"
-                    onclick="toggleMemory(this)">
-
+                <div class="memory">
                     <div class="memory-title">
                         رسالة لكِ 💌
                     </div>
@@ -934,46 +610,29 @@ body{
                     <div class="memory-text">
                         وجودك في حياتي شيء ما أعتبره عادي أبدًا.
                     </div>
-
                 </div>
 
             </div>
 
             <div class="buttons">
 
-                <button
-                    class="btn"
-                    onclick="showPage('songs')">
-
+                <button class="btn page-btn" data-page="songs">
                     أغانينا 🎵
-
                 </button>
 
-                <button
-                    class="btn secondary"
-                    onclick="showPage('letters')">
-
+                <button class="btn secondary page-btn" data-page="letters">
                     الرسائل 💌
-
                 </button>
 
             </div>
-
         </div>
-
     </div>
-
 </section>
 
 
-<!-- =========================
-     الأغاني
-========================= -->
-
+<!-- الأغاني -->
 <section class="page" id="songs">
-
     <div class="container">
-
         <div class="card">
 
             <h2 class="title">
@@ -983,20 +642,16 @@ body{
             <p class="description">
                 اختاري أغنية...
                 <br>
-                وراح تنتقلين إلى YouTube مباشرة.
+                وراح تنتقلين إلى YouTube.
             </p>
-
 
             <div class="song-list">
 
                 <div class="song">
 
-                    <div class="song-icon">
-                        🎵
-                    </div>
+                    <div class="song-icon">🎵</div>
 
                     <div class="song-info">
-
                         <div class="song-name">
                             بوضحلك صفة حلوة
                         </div>
@@ -1004,121 +659,40 @@ body{
                         <div class="song-sub">
                             أغنية خاصة ❤️
                         </div>
-
                     </div>
 
                     <a
                         class="youtube"
                         href="https://www.youtube.com/results?search_query=بوضحلك+صفة+حلوة"
                         target="_blank"
-                        rel="noopener noreferrer">
-
+                        rel="noopener">
                         اسمعيها
-
-                    </a>
-
-                </div>
-
-
-                <div class="song">
-
-                    <div class="song-icon">
-                        🎶
-                    </div>
-
-                    <div class="song-info">
-
-                        <div class="song-name">
-                            أغنية ثانية
-                        </div>
-
-                        <div class="song-sub">
-                            اختاريها لاحقًا
-                        </div>
-
-                    </div>
-
-                    <a
-                        class="youtube"
-                        href="https://www.youtube.com/"
-                        target="_blank"
-                        rel="noopener noreferrer">
-
-                        YouTube
-
-                    </a>
-
-                </div>
-
-
-                <div class="song">
-
-                    <div class="song-icon">
-                        ❤️
-                    </div>
-
-                    <div class="song-info">
-
-                        <div class="song-name">
-                            أغنية لنا
-                        </div>
-
-                        <div class="song-sub">
-                            مكان محفوظ لذكرياتنا
-                        </div>
-
-                    </div>
-
-                    <a
-                        class="youtube"
-                        href="https://www.youtube.com/"
-                        target="_blank"
-                        rel="noopener noreferrer">
-
-                        اسمعي
-
                     </a>
 
                 </div>
 
             </div>
 
-
             <div class="buttons">
 
-                <button
-                    class="btn"
-                    onclick="showPage('letters')">
-
+                <button class="btn page-btn" data-page="letters">
                     الرسائل 💌
-
                 </button>
 
-                <button
-                    class="btn secondary"
-                    onclick="showPage('secret')">
-
+                <button class="btn secondary page-btn" data-page="secret">
                     الغرفة السرية 🔐
-
                 </button>
 
             </div>
 
         </div>
-
     </div>
-
 </section>
 
 
-<!-- =========================
-     الرسائل
-========================= -->
-
+<!-- الرسائل -->
 <section class="page" id="letters">
-
     <div class="container">
-
         <div class="card">
 
             <h2 class="title">
@@ -1129,106 +703,50 @@ body{
                 افتحي أي رسالة.
             </p>
 
-
             <div class="letter-list">
 
-                <div
-                    class="letter"
-                    onclick="letter('مهما حاولت أوصف لكِ مكانتك عندي، الكلام دائمًا بيكون أقل من الشعور الحقيقي. ❤️')">
-
-                    <div class="letter-icon">
-                        💌
-                    </div>
-
-                    <p>
-                        رسالة أولى
-                    </p>
-
+                <div class="letter" data-message="مهما حاولت أوصف لكِ مكانتك عندي، الكلام دائمًا بيكون أقل من الشعور الحقيقي. ❤️">
+                    <div class="letter-icon">💌</div>
+                    <p>رسالة أولى</p>
                 </div>
 
-
-                <div
-                    class="letter"
-                    onclick="letter('أحب فيكِ التفاصيل الصغيرة التي ربما أنتِ لا تنتبهين لها أصلًا. 🌹')">
-
-                    <div class="letter-icon">
-                        💌
-                    </div>
-
-                    <p>
-                        رسالة ثانية
-                    </p>
-
+                <div class="letter" data-message="أحب فيكِ التفاصيل الصغيرة التي ربما أنتِ لا تنتبهين لها أصلًا. 🌹">
+                    <div class="letter-icon">💌</div>
+                    <p>رسالة ثانية</p>
                 </div>
 
-
-                <div
-                    class="letter"
-                    onclick="letter('لو عاد فيني الوقت، باختارك من جديد. ❤️')">
-
-                    <div class="letter-icon">
-                        💌
-                    </div>
-
-                    <p>
-                        رسالة ثالثة
-                    </p>
-
+                <div class="letter" data-message="لو عاد فيني الوقت، باختارك من جديد. ❤️">
+                    <div class="letter-icon">💌</div>
+                    <p>رسالة ثالثة</p>
                 </div>
 
-
-                <div
-                    class="letter"
-                    onclick="letter('هذه مجرد بداية... والباقي أجمل بإذن الله. ✨')">
-
-                    <div class="letter-icon">
-                        ❤️
-                    </div>
-
-                    <p>
-                        رسالة أخيرة
-                    </p>
-
+                <div class="letter" data-message="هذه مجرد بداية... والباقي أجمل بإذن الله. ✨">
+                    <div class="letter-icon">❤️</div>
+                    <p>رسالة أخيرة</p>
                 </div>
 
             </div>
 
-
             <div class="buttons">
 
-                <button
-                    class="btn"
-                    onclick="showPage('secret')">
-
+                <button class="btn page-btn" data-page="secret">
                     الغرفة السرية 🔐
-
                 </button>
 
-                <button
-                    class="btn secondary"
-                    onclick="showPage('home')">
-
+                <button class="btn secondary page-btn" data-page="home">
                     البداية
-
                 </button>
 
             </div>
 
         </div>
-
     </div>
-
 </section>
 
 
-<!-- =========================
-     الغرفة السرية
-========================= -->
-
+<!-- الغرفة السرية -->
 <section class="page" id="secret">
-
     <div class="container">
-
         <div class="card">
 
             <h2 class="title">
@@ -1241,7 +759,6 @@ body{
                 لكن تحتاج الرمز الصحيح.
             </p>
 
-
             <input
                 id="secretCode"
                 class="secret-input"
@@ -1249,45 +766,29 @@ body{
                 inputmode="numeric"
                 maxlength="4"
                 placeholder="••••"
-                autocomplete="off"
-            >
-
+                autocomplete="off">
 
             <div class="buttons" id="codeButtons">
 
-                <button
-                    class="btn"
-                    onclick="unlockSecret()">
-
+                <button class="btn" id="unlockButton">
                     فتح 🔓
-
                 </button>
 
             </div>
-
 
             <div
                 class="secret-message"
                 id="secretMessage">
             </div>
 
-
             <div
                 class="secret-content"
                 id="secretContent">
 
-                <div class="secret-image-wrap">
-
-                    <div class="secret-glow"></div>
-
-                    <img
-                        src="secret.png"
-                        class="secret-image"
-                        alt="صورتنا ❤️"
-                    >
-
-                </div>
-
+                <img
+                    src="secret.png"
+                    class="secret-image"
+                    alt="صورتنا ❤️">
 
                 <h3 class="secret-title">
                     هذه لكِ يا مريم ❤️
@@ -1299,15 +800,10 @@ body{
                     لأنها تحمل قصة كاملة.
                 </p>
 
-
                 <div class="buttons">
 
-                    <button
-                        class="btn"
-                        onclick="showPage('final')">
-
+                    <button class="btn page-btn" data-page="final">
                         آخر مفاجأة ✨
-
                     </button>
 
                 </div>
@@ -1315,384 +811,331 @@ body{
             </div>
 
         </div>
-
     </div>
-
 </section>
 
 
-<!-- =========================
-     النهاية
-========================= -->
-
+<!-- النهاية -->
 <section class="page" id="final">
-
     <div class="container">
-
         <div class="card">
 
-            <div class="heart">
-                ❤️
-            </div>
+            <div class="heart">❤️</div>
 
             <h2 class="title">
                 مريم...
             </h2>
 
             <p class="final-text">
-
                 إذا وصلتي إلى هنا،
                 <br>
                 فأنتِ أكملتِ الرحلة كلها.
                 <br><br>
-
                 وأبغى تعرفين شيء واحد...
                 <br>
-
                 أنتِ مو مجرد شخص في حياتي،
                 <br>
-
                 أنتِ من أجمل الأشياء اللي صارت فيها.
                 <br><br>
-
                 وهذه الصفحة مو النهاية...
                 <br>
-
                 هذه مجرد بداية. ❤️
-
             </p>
-
 
             <div class="buttons">
 
-                <button
-                    class="btn"
-                    onclick="showPage('home')">
-
+                <button class="btn page-btn" data-page="home">
                     من البداية ❤️
-
                 </button>
 
             </div>
 
         </div>
-
     </div>
-
 </section>
 
+</div>
 
-<!-- =========================
-     التنقل السفلي
-========================= -->
 
+<!-- التنقل السفلي -->
 <nav class="nav">
 
-    <button
-        id="navHome"
-        class="active"
-        onclick="showPage('home')">
+    <button class="nav-btn active" data-page="home">
         🏠
     </button>
 
-    <button
-        id="navStory"
-        onclick="showPage('story')">
+    <button class="nav-btn" data-page="story">
         ❤️
     </button>
 
-    <button
-        id="navSongs"
-        onclick="showPage('songs')">
+    <button class="nav-btn" data-page="songs">
         🎵
     </button>
 
-    <button
-        id="navLetters"
-        onclick="showPage('letters')">
+    <button class="nav-btn" data-page="letters">
         💌
     </button>
 
-    <button
-        id="navSecret"
-        onclick="showPage('secret')">
+    <button class="nav-btn" data-page="secret">
         🔐
     </button>
 
 </nav>
 
 
-<!-- التنبيه -->
-<div
-    class="toast"
-    id="toast">
-</div>
+<div class="toast" id="toast"></div>
 
 
 <script>
+/* =====================================================
+   نظام الموقع
+   لا يوجد onclick داخل HTML
+===================================================== */
 
-/* =========================
-   الصفحات
-========================= */
+document.addEventListener("DOMContentLoaded", function(){
 
-const pageIds = [
-    "home",
-    "story",
-    "songs",
-    "letters",
-    "secret",
-    "final"
-];
+    const pages = document.querySelectorAll(".page");
+    const pageButtons = document.querySelectorAll(".page-btn");
+    const navButtons = document.querySelectorAll(".nav-btn");
+    const memories = document.querySelectorAll(".memory");
+    const letters = document.querySelectorAll(".letter");
+
+    const secretCode = document.getElementById("secretCode");
+    const unlockButton = document.getElementById("unlockButton");
+
+    const secretMessage =
+        document.getElementById("secretMessage");
+
+    const secretContent =
+        document.getElementById("secretContent");
+
+    const codeButtons =
+        document.getElementById("codeButtons");
+
+    const toast =
+        document.getElementById("toast");
 
 
-/* =========================
-   التنقل الرئيسي
-========================= */
+    /* =========================
+       تغيير الصفحة
+    ========================= */
 
-function showPage(id){
+    function goToPage(pageName){
 
-    pageIds.forEach(function(pageId){
-
-        const page =
-            document.getElementById(pageId);
-
-        if(pageId === id){
-
-            page.classList.add("active");
-
-        }else{
+        pages.forEach(function(page){
 
             page.classList.remove("active");
 
+        });
+
+        const target =
+            document.getElementById(pageName);
+
+        if(!target){
+            return;
         }
 
-    });
+        target.classList.add("active");
 
 
-    /* تحديث أزرار التنقل */
+        /* تحديث زر القائمة */
 
-    document
-        .querySelectorAll(".nav button")
-        .forEach(function(button){
+        navButtons.forEach(function(button){
 
             button.classList.remove("active");
+
+            if(button.dataset.page === pageName){
+                button.classList.add("active");
+            }
 
         });
 
 
-    const navMap = {
-
-        home:"navHome",
-        story:"navStory",
-        songs:"navSongs",
-        letters:"navLetters",
-        secret:"navSecret"
-
-    };
-
-
-    if(navMap[id]){
-
-        document
-            .getElementById(navMap[id])
-            .classList.add("active");
-
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
     }
 
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
+    /* =========================
+       أزرار الانتقال
+    ========================= */
+
+    pageButtons.forEach(function(button){
+
+        button.addEventListener("click", function(){
+
+            const page =
+                this.dataset.page;
+
+            goToPage(page);
+
+        });
+
     });
 
-}
+
+    /* =========================
+       القائمة السفلية
+    ========================= */
+
+    navButtons.forEach(function(button){
+
+        button.addEventListener("click", function(){
+
+            const page =
+                this.dataset.page;
+
+            goToPage(page);
+
+        });
+
+    });
 
 
-/* =========================
-   الذكريات
-========================= */
+    /* =========================
+       الذكريات
+    ========================= */
 
-function toggleMemory(element){
+    memories.forEach(function(memory){
 
-    element.classList.toggle("open");
+        memory.addEventListener("click", function(){
 
-}
+            this.classList.toggle("open");
 
+        });
 
-/* =========================
-   الرسائل
-========================= */
-
-function letter(message){
-
-    showToast(message);
-
-}
+    });
 
 
-/* =========================
-   الغرفة السرية
-========================= */
+    /* =========================
+       الرسائل
+    ========================= */
 
-function unlockSecret(){
+    letters.forEach(function(letter){
 
-    const input =
-        document.getElementById("secretCode");
+        letter.addEventListener("click", function(){
 
-    const message =
-        document.getElementById("secretMessage");
+            toast.textContent =
+                this.dataset.message;
 
-    const content =
-        document.getElementById("secretContent");
+            toast.classList.add("show");
 
-    const buttons =
-        document.getElementById("codeButtons");
+            clearTimeout(window.toastTimer);
 
+            window.toastTimer =
+                setTimeout(function(){
 
-    const code =
-        input.value.trim();
+                    toast.classList.remove("show");
 
+                },4500);
 
-    /* الرمز الصحيح */
+        });
 
-    if(code === "2026"){
-
-        message.textContent =
-            "تم فتح الغرفة السرية ❤️";
-
-        message.style.color =
-            "#ffc3ce";
+    });
 
 
-        input.style.display =
-            "none";
+    /* =========================
+       فتح الغرفة السرية
+       الرمز = 2026
+    ========================= */
 
+    function unlock(){
 
-        buttons.style.display =
-            "none";
+        const code =
+            secretCode.value.trim();
 
+        if(code === "2026"){
 
-        content.classList.add("show");
+            secretMessage.textContent =
+                "تم فتح الغرفة السرية ❤️";
 
+            secretMessage.style.color =
+                "#ffc3ce";
 
-    }else{
+            secretCode.style.display =
+                "none";
 
-        message.textContent =
-            "الرمز غير صحيح... حاولي مرة ثانية ❤️";
+            codeButtons.style.display =
+                "none";
 
-        message.style.color =
-            "#ff8097";
+            secretContent.classList.add("show");
+
+        }else{
+
+            secretMessage.textContent =
+                "الرمز غير صحيح... حاولي مرة ثانية ❤️";
+
+            secretMessage.style.color =
+                "#ff8097";
+
+        }
 
     }
 
-}
+
+    unlockButton.addEventListener(
+        "click",
+        unlock
+    );
 
 
-/* =========================
-   Enter للرمز
-========================= */
-
-document
-    .getElementById("secretCode")
-    .addEventListener(
+    secretCode.addEventListener(
         "keydown",
         function(event){
 
             if(event.key === "Enter"){
-
-                unlockSecret();
-
+                unlock();
             }
 
         }
     );
 
 
-/* =========================
-   Toast
-========================= */
+    /* =========================
+       الجزيئات
+    ========================= */
 
-let toastTimer;
+    const particleContainer =
+        document.getElementById("particles");
 
+    for(let i=0; i<60; i++){
 
-function showToast(message){
+        const particle =
+            document.createElement("span");
 
-    const toast =
-        document.getElementById("toast");
+        particle.className =
+            "particle";
 
+        particle.style.left =
+            Math.random()*100 + "%";
 
-    toast.textContent =
-        message;
+        particle.style.top =
+            Math.random()*100 + 100 + "%";
 
+        const size =
+            Math.random()*3 + 1;
 
-    toast.classList.add("show");
+        particle.style.width =
+            size + "px";
 
+        particle.style.height =
+            size + "px";
 
-    clearTimeout(toastTimer);
+        particle.style.animationDuration =
+            Math.random()*8 + 6 + "s";
 
+        particle.style.animationDelay =
+            Math.random()*8 + "s";
 
-    toastTimer =
-        setTimeout(function(){
+        particleContainer.appendChild(
+            particle
+        );
 
-            toast.classList.remove("show");
+    }
 
-        },4500);
-
-}
-
-
-/* =========================
-   الجزيئات
-========================= */
-
-const particleContainer =
-    document.getElementById("particles");
-
-
-for(let i = 0; i < 60; i++){
-
-    const particle =
-        document.createElement("span");
-
-
-    particle.className =
-        "particle";
-
-
-    particle.style.left =
-        Math.random() * 100 + "%";
-
-
-    particle.style.top =
-        (Math.random() * 100 + 100) + "%";
-
-
-    const size =
-        Math.random() * 3 + 1;
-
-
-    particle.style.width =
-        size + "px";
-
-
-    particle.style.height =
-        size + "px";
-
-
-    particle.style.animationDuration =
-        (Math.random() * 8 + 6) + "s";
-
-
-    particle.style.animationDelay =
-        (Math.random() * 8) + "s";
-
-
-    particleContainer.appendChild(
-        particle
-    );
-
-}
-
+});
 </script>
 
 </body>
