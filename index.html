@@ -26,7 +26,10 @@
             color: white;
         }
 
-        /* الخلفية */
+        /* =========================
+           المشهد الرئيسي
+        ========================= */
+
         .scene {
             position: relative;
             width: 100%;
@@ -46,10 +49,12 @@
             background-repeat: no-repeat;
         }
 
-        /* طبقة الإضاءة */
+        /* الإضاءة المتحركة */
+
         .glow {
             position: absolute;
             inset: -20%;
+
             background:
                 radial-gradient(
                     circle at 50% 45%,
@@ -73,7 +78,10 @@
             }
         }
 
-        /* النجوم والجزيئات */
+        /* =========================
+           النجوم
+        ========================= */
+
         .particles {
             position: absolute;
             inset: 0;
@@ -83,10 +91,14 @@
 
         .particle {
             position: absolute;
+
             width: 3px;
             height: 3px;
+
             border-radius: 50%;
+
             background: rgba(255, 180, 190, 0.9);
+
             box-shadow:
                 0 0 8px rgba(255, 60, 90, 0.8),
                 0 0 16px rgba(255, 40, 70, 0.35);
@@ -109,35 +121,55 @@
         @keyframes twinkle {
             from {
                 opacity: 0.15;
-                transform: scale(0.7);
             }
 
             to {
                 opacity: 1;
-                transform: scale(1.4);
             }
         }
 
-        /* المحتوى */
-        .content {
-            position: relative;
-            z-index: 5;
+        /* =========================
+           الشاشات
+        ========================= */
 
-            width: 100%;
-            height: 100%;
+        .screen {
+            position: absolute;
+            inset: 0;
 
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
 
-            padding: 30px;
+            padding: 25px;
+
+            transition:
+                opacity 0.9s ease,
+                transform 0.9s ease;
+
+            z-index: 5;
+        }
+
+        .screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(1.06);
+        }
+
+        /* =========================
+           محتوى الشاشة الأولى
+        ========================= */
+
+        .content {
+            width: 100%;
+            max-width: 500px;
+
             text-align: center;
         }
 
         .small-text {
             font-size: 15px;
             color: rgba(255, 220, 225, 0.75);
+
             letter-spacing: 2px;
             margin-bottom: 18px;
 
@@ -145,48 +177,57 @@
         }
 
         .title {
-            font-size: clamp(42px, 12vw, 80px);
+            font-size: clamp(48px, 14vw, 85px);
             font-weight: 700;
 
-            background: linear-gradient(
-                180deg,
-                #ffffff,
-                #ffd6dc,
-                #c92c4b
-            );
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff,
+                    #ffd6dc,
+                    #c92c4b
+                );
 
             -webkit-background-clip: text;
             background-clip: text;
+
             color: transparent;
 
             text-shadow:
                 0 0 25px rgba(255, 30, 70, 0.2);
 
-            animation: titleAppear 1.8s ease forwards;
+            animation:
+                titleAppear 1.8s ease forwards;
         }
 
         .subtitle {
             margin-top: 15px;
-            max-width: 330px;
 
             font-size: 17px;
             line-height: 1.9;
 
             color: rgba(255, 235, 238, 0.82);
 
-            animation: fadeUp 2s ease forwards;
+            animation:
+                fadeUp 2s ease forwards;
         }
 
-        /* الزر */
-        .start-btn {
+        /* =========================
+           الأزرار
+        ========================= */
+
+        .start-btn,
+        .next-btn {
             margin-top: 35px;
 
             border: 1px solid rgba(255, 120, 140, 0.45);
+
             border-radius: 999px;
 
             padding: 15px 34px;
 
             color: white;
+
             background:
                 linear-gradient(
                     135deg,
@@ -197,6 +238,7 @@
             backdrop-filter: blur(10px);
 
             font-size: 17px;
+
             cursor: pointer;
 
             box-shadow:
@@ -204,34 +246,94 @@
 
             transition:
                 transform 0.3s ease,
-                box-shadow 0.3s ease,
-                background 0.3s ease;
-
-            animation: fadeUp 2.3s ease forwards;
+                box-shadow 0.3s ease;
         }
 
-        .start-btn:hover {
+        .start-btn:hover,
+        .next-btn:hover {
             transform: translateY(-4px) scale(1.03);
 
             box-shadow:
                 0 0 35px rgba(220, 20, 60, 0.45);
         }
 
-        .start-btn:active {
+        .start-btn:active,
+        .next-btn:active {
             transform: scale(0.96);
         }
 
-        /* الحركات */
+        /* =========================
+           الشاشة الثانية
+        ========================= */
+
+        .second-content {
+            width: 100%;
+            max-width: 500px;
+
+            text-align: center;
+
+            animation:
+                secondAppear 1.2s ease forwards;
+        }
+
+        .heart {
+            font-size: 55px;
+
+            margin-bottom: 20px;
+
+            animation:
+                heartbeat 1.6s ease-in-out infinite;
+        }
+
+        .second-title {
+            font-size: clamp(32px, 9vw, 55px);
+
+            margin-bottom: 20px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff,
+                    #ffc5cf,
+                    #c92c4b
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .second-text {
+            font-size: 17px;
+
+            line-height: 2;
+
+            color:
+                rgba(255, 235, 238, 0.85);
+        }
+
+        /* =========================
+           الحركات
+        ========================= */
+
         @keyframes titleAppear {
             from {
                 opacity: 0;
-                transform: translateY(25px) scale(0.95);
+                transform:
+                    translateY(25px)
+                    scale(0.95);
+
                 filter: blur(8px);
             }
 
             to {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+
+                transform:
+                    translateY(0)
+                    scale(1);
+
                 filter: blur(0);
             }
         }
@@ -239,42 +341,80 @@
         @keyframes fadeUp {
             from {
                 opacity: 0;
-                transform: translateY(25px);
+                transform:
+                    translateY(25px);
             }
 
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform:
+                    translateY(0);
             }
         }
 
         @keyframes fadeDown {
             from {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform:
+                    translateY(-20px);
             }
 
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform:
+                    translateY(0);
             }
         }
 
-        /* للجوال */
+        @keyframes secondAppear {
+            from {
+                opacity: 0;
+                transform:
+                    translateY(30px)
+                    scale(0.96);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+        @keyframes heartbeat {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        /* =========================
+           الجوال
+        ========================= */
+
         @media (max-width: 500px) {
-            .content {
-                padding: 22px;
+
+            .content,
+            .second-content {
+                padding: 10px;
             }
 
             .title {
-                font-size: 52px;
+                font-size: 58px;
             }
 
-            .subtitle {
+            .subtitle,
+            .second-text {
                 font-size: 15px;
             }
 
-            .start-btn {
+            .start-btn,
+            .next-btn {
                 font-size: 16px;
                 padding: 14px 30px;
             }
@@ -286,45 +426,110 @@
 
     <main class="scene">
 
+        <!-- الإضاءة -->
         <div class="glow"></div>
 
-        <div class="particles" id="particles"></div>
+        <!-- النجوم -->
+        <div
+            class="particles"
+            id="particles">
+        </div>
 
-        <section class="content">
 
-            <div class="small-text">
-                إلى شخص مميز جدًا...
+        <!-- =====================
+             الشاشة الأولى
+        ====================== -->
+
+        <section
+            class="screen"
+            id="screenOne">
+
+            <div class="content">
+
+                <div class="small-text">
+                    إلى شخص مميز جدًا...
+                </div>
+
+                <h1 class="title">
+                    مريم
+                </h1>
+
+                <p class="subtitle">
+                    هذه المرة ما هي مجرد رسالة...
+                    <br>
+                    هذه رحلة صغيرة صنعتها لكِ ❤️
+                </p>
+
+                <button
+                    class="start-btn"
+                    onclick="startJourney()">
+
+                    ابدئي الرحلة ❤️
+
+                </button>
+
             </div>
 
-            <h1 class="title">
-                مريم
-            </h1>
+        </section>
 
-            <p class="subtitle">
-                هذه المرة ما هي مجرد رسالة...
-                <br>
-                هذه رحلة صغيرة صنعتها لكِ ❤️
-            </p>
 
-            <button class="start-btn" onclick="startJourney()">
-                ابدئي الرحلة ❤️
-            </button>
+        <!-- =====================
+             الشاشة الثانية
+        ====================== -->
+
+        <section
+            class="screen hidden"
+            id="screenTwo">
+
+            <div class="second-content">
+
+                <div class="heart">
+                    ❤️
+                </div>
+
+                <h2 class="second-title">
+                    قبل ما نبدأ...
+                </h2>
+
+                <p class="second-text">
+                    أبغى منكِ شيء واحد فقط...
+                    <br><br>
+                    خذي وقتك،
+                    واضغطي على الزر لما تكونين مستعدة
+                    لاكتشاف اللي خبأته لكِ.
+                </p>
+
+                <button
+                    class="next-btn"
+                    onclick="nextStep()">
+
+                    أنا مستعدة ❤️
+
+                </button>
+
+            </div>
 
         </section>
 
     </main>
 
+
     <script>
+
+        /* =========================
+           إنشاء النجوم
+        ========================= */
+
         const particlesContainer =
             document.getElementById("particles");
 
-        // إنشاء الجزيئات والنجوم
-        for (let i = 0; i < 45; i++) {
+        for (let i = 0; i < 55; i++) {
 
             const particle =
                 document.createElement("span");
 
-            particle.className = "particle";
+            particle.className =
+                "particle";
 
             particle.style.left =
                 Math.random() * 100 + "%";
@@ -342,21 +547,50 @@
                 size + "px";
 
             particle.style.animationDuration =
-                (Math.random() * 5 + 4) + "s";
+                (Math.random() * 6 + 4) + "s";
 
             particle.style.animationDelay =
                 (Math.random() * 5) + "s";
 
-            particlesContainer.appendChild(particle);
+            particlesContainer.appendChild(
+                particle
+            );
         }
+
+
+        /* =========================
+           بداية الرحلة
+        ========================= */
 
         function startJourney() {
 
-            // مؤقتًا نعرض رسالة.
-            // لاحقًا سنربط الزر بالصفحة الثانية.
+            const screenOne =
+                document.getElementById("screenOne");
 
-            alert("الرحلة بدأت ❤️");
+            const screenTwo =
+                document.getElementById("screenTwo");
+
+            screenOne.classList.add("hidden");
+
+            setTimeout(() => {
+
+                screenTwo.classList.remove("hidden");
+
+            }, 500);
         }
+
+
+        /* =========================
+           الخطوة التالية
+           مؤقتًا
+        ========================= */
+
+        function nextStep() {
+
+            alert("هنا تبدأ المرحلة التالية ❤️");
+
+        }
+
     </script>
 
 </body>
